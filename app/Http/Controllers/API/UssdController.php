@@ -150,6 +150,8 @@ class UssdController extends Controller
 // 											}
 // }
 //}
+    header('Content-type: text/plain; charset=utf-8');
+
 echo json_encode($data);
 }
 }
