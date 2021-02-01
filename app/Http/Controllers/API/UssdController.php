@@ -41,7 +41,8 @@ if ($newRequest == "1")
 {
     Member::where(['telephone' => $msisdn, 'status' => 0])->forceDelete();
 
-	$message = "Welcome to Patriots/Ikaze kuri Patriots/#1.English#2.Kinyarwanda";    
+	//$message = "Welcome to Patriots/Ikaze kuri Patriots/#1.English#2.Kinyarwanda";    
+    $message = "Welcome to Patriots";    
     $data = array("action" => "FC", "message" => $message);
     saveFlow('english', $message, $input, $session, $msisdn, 0, 0);
 
