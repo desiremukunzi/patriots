@@ -43,7 +43,7 @@ if ($newRequest == "1")
 
 	$message = "Welcome to Patriots/Ikaze kuri Patriots/#1.English#2.Kinyarwanda";    
     $data = array("action" => "FC", "message" => $message);
-    saveFlow('english', $message, $input, $sessionId, $msisdn, 0, 0);
+    saveFlow('english', $message, $input, $session, $msisdn, 0, 0);
 
 } 
 else if ($newRequest == "0") 
