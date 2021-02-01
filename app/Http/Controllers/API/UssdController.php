@@ -13,24 +13,24 @@ use Illuminate\Support\Facades\Http;
 
 class UssdController extends Controller
 {
-	public $newRequest0;
-	public $msisdn0;
-    public $input0;
-    public $sessionId;
+	// public $newRequest0;
+	// public $msisdn0;
+ //    public $input0;
+ //    public $sessionId;
 
-	public function __construct()
-	{
-		$this->newRequest0=0;
-		$this->msisdn0="";
-		$this->input0="";
-		$this->sessionId=0;
-	}
+	// public function __construct()
+	// {
+	// 	$this->newRequest0=0;
+	// 	$this->msisdn0="";
+	// 	$this->input0="";
+	// 	$this->sessionId=0;
+	// }
  public function index(Request $request)
 {
-    $newRequest=$this->newRequest0 = $request->get('newRequest');
-    $msisdn=$this->msisdn0 = $request->get('msisdn');
-    $input=$this->input0 = $request->get('input');
-    $sessionId=$this->input0 = $request->get('sessionId');
+    $newRequest=$request->get('newRequest');
+    $msisdn=$request->get('msisdn');
+    $input=$request->get('input');
+    //$sessionId=$request->get('sessionId');
   
     // $tel = substr($msisdn, 2, 10);
     // $session = Ussd_flow::orderBy('session', 'desc')->limit(1)->value('session');
