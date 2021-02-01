@@ -37,16 +37,16 @@ class UssdController extends Controller
     // $session = $session + 1;	
 
   
-if ($newRequest == "1") 
-{
+// if ($newRequest == "1") 
+// {
     //Member::where(['telephone' => $msisdn, 'status' => 0])->forceDelete();
 
 	//$message = "Welcome to Patriots/Ikaze kuri Patriots/#1.English#2.Kinyarwanda";    
     $message = "Welcome to Patriots";    
-    $data = array("action" => "FC", "message" => $message);
+    $data = array("action" => "FC", "message" => $message.$newRequest);
     //saveFlow('english', $message, $input, $session, $msisdn, 0, 0);
 
-} 
+//} 
 // else if ($newRequest == "0") 
 // {
 // 	$query = Ussd_flow::where('telephone', $msisdn)->orderBy('id', 'desc')->limit(1)->first();
