@@ -27,9 +27,9 @@ class UssdController extends Controller
 	// }
  public function index(Request $request)
 {
-    $newRequest=$request->get('newRequest');
-    $msisdn=$request->get('msisdn');
-    $input=$request->get('input');
+    // $newRequest=$request->get('newRequest');
+    // $msisdn=$request->get('msisdn');
+    // $input=$request->get('input');
     //$sessionId=$request->get('sessionId');
   
     // $tel = substr($msisdn, 2, 10);
@@ -43,7 +43,7 @@ class UssdController extends Controller
 
 	//$message = "Welcome to Patriots/Ikaze kuri Patriots/#1.English#2.Kinyarwanda";    
     $message = "Welcome to Patriots";    
-    $data = array("action" => "FC", "message" => $message.$newRequest);
+    $data = array("action" => "FC", "message" => $message);
     //saveFlow('english', $message, $input, $session, $msisdn, 0, 0);
 
 //} 
