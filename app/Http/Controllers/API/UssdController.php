@@ -9,6 +9,8 @@ use App\Setting;
 use App\Category;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
+use Log;
+
 
 
 class UssdController extends Controller
@@ -31,6 +33,9 @@ class UssdController extends Controller
     $msisdn=$this->msisdn0 = $request->get('msisdn');
     $input=$this->input0 = $request->get('input');
     $sessionId=$this->input0 = $request->get('sessionId');
+
+            Log::info("merchant ".$newRequest.$input);
+
   
     // $tel = substr($msisdn, 2, 10);
     // $session = Ussd_flow::orderBy('session', 'desc')->limit(1)->value('session');
