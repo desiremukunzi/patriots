@@ -1,2 +1,5 @@
 123@UaduaP
 ssh root@142.93.194.162
+
+sudo chown -R www-data.www-data /var/www/patriots/storage
+sudo chown -R www-data.www-data /var/www/patriots/bootstrap/cache
