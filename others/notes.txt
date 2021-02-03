@@ -1,3 +1,2 @@
 123@UaduaP
-sudo nano /etc/nginx/sites-available/patriots
-sudo certbot --nginx -d patriots.mopay.rw
+ssh root@142.93.194.162

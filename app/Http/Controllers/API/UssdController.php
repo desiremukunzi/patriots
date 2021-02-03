@@ -35,8 +35,9 @@ class UssdController extends Controller
     $input=$this->input0 = $request->get('input');
     $sessionId=$this->input0 = $request->get('sessionId');
 
-    $message = "Welcome to Patriots";    
-    return $data = array("action" => "FC", "message" => $message);
+    //$message = "Welcome to Patriots";    
+    //$data = array("action" => "FC", "message" => $message);
+
 
 
   
@@ -53,6 +54,8 @@ if ($newRequest == "1")
     $message = "Welcome to Patriots";    
     $data = array("action" => "FC", "message" => $message);
     //saveFlow('english', $message, $input, $session, $msisdn, 0, 0);
+return json_encode($data);
+
 
 } 
 else if ($newRequest == "0") 
@@ -158,6 +161,6 @@ if($level=='confirmMember'){
 											}
 }
 }
-return $data;
+    return json_encode($data);
 }
 }
