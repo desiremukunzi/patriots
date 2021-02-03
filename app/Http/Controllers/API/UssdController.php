@@ -14,18 +14,18 @@ use Log;
 
 class UssdController extends Controller
 {
-	public $newRequest0;
-	public $msisdn0;
+    public $newRequest0;
+    public $msisdn0;
     public $input0;
     public $sessionId;
 
-	public function __construct()
-	{
-		$this->newRequest0=0;
-		$this->msisdn0="";
-		$this->input0="";
-		$this->sessionId=0;
-	}
+    public function __construct()
+    {
+        $this->newRequest0=0;
+        $this->msisdn0="";
+        $this->input0="";
+        $this->sessionId=0;
+    }
  public function index(Request $request)
 {
                 Log::info("merchant ".$request->input);
@@ -35,32 +35,29 @@ class UssdController extends Controller
     $input=$this->input0 = $request->get('input');
     $sessionId=$this->input0 = $request->get('sessionId');
 
-    //$message = "Welcome to Patriots";    
-    //$data = array("action" => "FC", "message" => $message);
-
+    $message = "Welcome to Patriots";    
+    return $data = array("action" => "FC", "message" => $message);
 
 
   
     // $tel = substr($msisdn, 2, 10);
     // $session = Ussd_flow::orderBy('session', 'desc')->limit(1)->value('session');
-    // $session = $session + 1;	
+    // $session = $session + 1; 
 
   
 if ($newRequest == "1") 
 {
     //Member::where(['telephone' => $msisdn, 'status' => 0])->forceDelete();
 
-	//$message = "Welcome to Patriots/Ikaze kuri Patriots/#1.English#2.Kinyarwanda";    
+    //$message = "Welcome to Patriots/Ikaze kuri Patriots/#1.English#2.Kinyarwanda";    
     $message = "Welcome to Patriots";    
     $data = array("action" => "FC", "message" => $message);
     //saveFlow('english', $message, $input, $session, $msisdn, 0, 0);
-return json_encode($data);
-
 
 } 
 else if ($newRequest == "0") 
 {
-	$query = Ussd_flow::where('telephone', $msisdn)->orderBy('id', 'desc')->limit(1)->first();
+    $query = Ussd_flow::where('telephone', $msisdn)->orderBy('id', 'desc')->limit(1)->first();
     $session = $query->session;
     $level = $query->level;
     $sublevel1 = $query->sublevel1;
@@ -84,7 +81,7 @@ else if ($newRequest == "0")
             $data = FC($message);
             saveFlow($language, $message, $input, $session, $msisdn, "1", "1");
         }
-		else if ($level == "1") {
+        else if ($level == "1") {
             if ($input == "1") {
                 $message = Dict($language, 'membership');
                 $data = array(
@@ -158,9 +155,9 @@ if($level=='confirmMember'){
                 $message = Dict($language, 'anyTime');
                 $data = array("action" => "FB", "message" => $message);
             }
-											}
+                                            }
 }
 }
-    return json_encode($data);
+return $data;
 }
 }
