@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UssdController;
+use App\Http\Controllers\PaymentsController;
 
 
 /*
@@ -21,3 +22,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/ussd',  [UssdController::class, 'index']);
    // Route::get('/ussd', 'App\Http\Controllers\API\UssdController@index');
+Route::post('/patriotsMomo', [PaymentsController::class,'momo'])->name('patriots.momo');
+

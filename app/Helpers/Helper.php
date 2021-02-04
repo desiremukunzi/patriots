@@ -973,7 +973,7 @@ function Pay($input,$msisdn)
         ],
         'transfers' =>  [            
             [
-                'phone_number'=>$MopayNumber,
+                'phone_number'=>$msisdn,
                 'amount'=> $fee,
                 //'amount'=> 150,
                 'message' =>  $message
@@ -981,7 +981,7 @@ function Pay($input,$msisdn)
             ],
             [
                 //'phone_number'=> '250788354222',
-                'phone_number'=> $number,
+                'phone_number'=> $msisdn,
                 'amount'=> $remaining,
                 //'amount'=> 150,
                 'message' =>  $message
