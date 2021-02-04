@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Payment History') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <table>
+                    <table class="table table-responsible">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -29,7 +29,7 @@
                             @forelse ($payments as $payment)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$payment->full_names}}</td>
+                                    <td>{{$payment->member->full_name}}</td>
                                     <td>{{$payment->telephone}}</td>
                                     <td>{{$payment->fee_type}}</td>
                                     <td>{{$payment->amount}}</td>
