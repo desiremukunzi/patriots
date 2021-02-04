@@ -90,6 +90,8 @@ else if ($newRequest == "0")
             $response =Http::get('https://mo.mopay.rw/api/v1/person?msisdn='.$msisdn);
             $first_name = json_decode($response->getBody())->firstName;
             $last_name = json_decode($response->getBody())->lastName;
+            if(Member::where('telephone',$msisdn)->exists())
+            return $data=FB(Dict($language,'nbrInDb'));
             $member=Member::create(['first_name'=>$first_name,'last_name'=>$last_name,'telephone'=>$msisdn,'language'=>$language,'session'=>$session]);
 
             if ($input == "1") {
