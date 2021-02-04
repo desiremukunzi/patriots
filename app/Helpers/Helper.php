@@ -964,7 +964,7 @@ function Pay($input,$msisdn)
          RequestOptions::JSON=>[
         'token' => 'bd3ZaBu9qlA3ZdxM6PEfkNot7UoO82hE',        
         'external_transaction_id' => $external_transaction_id,
-        'callback_url' => 'http://patriots.mopay.rw/api/patriotsMomo',
+        'callback_url' => 'https://patriots.mopay.rw/api/patriotsMomo',
         'debit' =>[
         'phone_number' => $msisdn,
         'amount' => $input,
