@@ -91,7 +91,7 @@ use SoftDeletes;
 	}
 	public function category()
 	{
-      return $this->BelongsTo(category::class);
+      return $this->BelongsTo(Category::class);
 	}
 	public function getFullNameAttribute() {
         return ucfirst($this->first_name) . ' ' . strtoupper($this->last_name);
