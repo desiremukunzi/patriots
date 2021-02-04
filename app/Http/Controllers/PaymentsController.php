@@ -1,18 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Controllers\Controller;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Payment;
 use App\Ussd_flow;
 use App\Sms_outbox;
-use App\Bpr_response;
-use App\Payment_transaction;
-use DB;
-use GuzzleHttp\RequestOptions;
-use Illuminate\Support\Facades\Http;
+use Log;
 
 class PaymentsController extends Controller
 {
@@ -21,7 +15,6 @@ class PaymentsController extends Controller
         $external_transaction_id = $request->get('external_transaction_id');
         $momo_ref_number = $request->get('momo_ref_number');
         $status_code = $request->get('status_code');
-        $bprRefNo=NULL;
              
 if($status_code==200){
 try {
@@ -34,11 +27,10 @@ $language = Ussd_flow::where('telephone', $tel)->orderBy('id', 'desc')
 ->limit(1)->value('language');
 //$language="english";
 
-$fee=$record->fee_description ? $record->fee_name."(".$record->fee_description.")"
-:$record->fee_name;
+$fee=$record->fee_type;
 $amount=$record->amount;
 $name_=$record->member->full_name ?? '-';
-$telephone0=$record->member->telephone ?? '-';
+$telephone=$record->member->telephone ?? '-';
 $membership=$record->member->category->name;
 
 $message0="";
@@ -55,12 +47,13 @@ sendSMS($message0, $telephone,$external_transaction_id);
 
 Payment::where('trxid',$external_transaction_id)
     ->update(['status' => 1,'transaction' => $momo_ref_number]); 
-    log('updated');
+    Log::info('updated');
     
 }
-} 
+ 
 catch (\Exception $e) {
-        log($e->getMessage());
+         Log::info($e->getMessage());
+}
 }
 }
 }

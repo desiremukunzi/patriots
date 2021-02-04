@@ -5,11 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Ussd_flow;
 use App\Member;
 use App\Payment;
-use App\Setting;
-use App\Category;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
-use Log;
 
 
 class UssdController extends Controller
@@ -28,31 +24,23 @@ class UssdController extends Controller
     }
  public function index(Request $request)
 {
-                Log::info("merchant ".$request->input);
-
     $newRequest=$this->newRequest0 = $request->get('newRequest');
     $msisdn=$this->msisdn0 = $request->get('msisdn');
     $input=$this->input0 = $request->get('input');
     $sessionId=$this->input0 = $request->get('sessionId');
 
-    $message = "Welcome to Patriots";    
-    return $data = array("action" => "FC", "message" => $message);
-
-
-  
-    // $tel = substr($msisdn, 2, 10);
-    // $session = Ussd_flow::orderBy('session', 'desc')->limit(1)->value('session');
-    // $session = $session + 1; 
+    $tel = substr($msisdn, 2, 10);
+    $session = Ussd_flow::orderBy('session', 'desc')->limit(1)->value('session');
+    $session = $session + 1; 
 
   
 if ($newRequest == "1") 
 {
-    //Member::where(['telephone' => $msisdn, 'status' => 0])->forceDelete();
+    Member::where(['telephone' => $msisdn, 'status' => 0])->forceDelete();
 
-    //$message = "Welcome to Patriots/Ikaze kuri Patriots/#1.English#2.Kinyarwanda";    
-    $message = "Welcome to Patriots";    
+    $message = "Welcome to Patriots/Ikaze kuri Patriots/#1.English#2.Kinyarwanda";    
     $data = array("action" => "FC", "message" => $message);
-    //saveFlow('english', $message, $input, $session, $msisdn, 0, 0);
+    saveFlow('english', $message, $input, $session, $msisdn, 0, 0);
 
 } 
 else if ($newRequest == "0") 
@@ -155,7 +143,7 @@ if($level=='confirmMember'){
                 $message = Dict($language, 'anyTime');
                 $data = array("action" => "FB", "message" => $message);
             }
-                                            }
+     }
 }
 }
 return $data;

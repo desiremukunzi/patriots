@@ -14,7 +14,35 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Names</th>
+                                <th>Tel</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Done At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($payments as $payment)
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$payment->full_names}}</td>
+                                    <td>{{$payment->telephone}}</td>
+                                    <td>{{$payment->fee_type}}</td>
+                                    <td>{{$payment->amount}}</td>
+                                    <td>{{$payment->created_at}}</td>
+                                </tr>
+                                @empty <tr><td colspan="6"></td><center>No  data</center></tr>
+                                    
+                          @endforelse
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-center">
+                      {!! $payments->links() !!}
+                  </div>  
                 </div>
             </div>
         </div>
