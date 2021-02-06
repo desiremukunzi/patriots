@@ -78,14 +78,27 @@ else if ($newRequest == "0")
                 saveFlow($language, $message, $input, $session, $msisdn,'membership', 1);
             } 
             else if ($input == "2") {
-                
-                $data = UnderMaintenance();
+                if(!Member::where('telephone',$msisdn)->exists())
+                return $data=FB(Dict($language,'fstreg'));
+                $message=Dict($language,'amount');
+                $data = FC($message);
+                saveFlow($language, $message, $input, $session, $msisdn,'paycontr', 1);
+
                 
             }
-            else if ($input == "3") {
-                $data = UnderMaintenance();
-            } else $data = InvalidInput($language);
+            else $data = InvalidInput($language);
         }
+        else if ($level == "paycontr") 
+        {
+        if($input<100)
+        return $data=FB(Dict($language,'invalidAmount'));
+
+        Payment::create(['telephone'=>$msisdn,'amount'=>$input,'fee_type'=>'contribution','fee_name'=>'contribution']);   
+        $message = Dict($language, 'pin');
+        $response = Pay($input, $msisdn);
+        $data = array("action" => "FB", "message" => $message);
+        }
+
         else if ($level == "membership") {
             $response =Http::get('https://mo.mopay.rw/api/v1/person?msisdn='.$msisdn);
             $first_name = json_decode($response->getBody())->firstName;
